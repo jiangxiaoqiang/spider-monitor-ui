@@ -225,7 +225,7 @@ module.exports = {
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin({ 
-      "process.env.NODE_ENV": JSON.stringify("production") 
+      "process.env.NODE_ENV": JSON.stringify("development") 
     }),
     // This is necessary to emit hot updates (currently CSS only):
     new webpack.HotModuleReplacementPlugin(),
