@@ -2,154 +2,51 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import {
-  G2,
   Chart,
   Geom,
   Axis,
   Tooltip,
-  Coord,
-  Label,
-  Legend,
-  View,
-  Guide,
-  Shape,
-  Facet,
-  Util
-} from "bizcharts";import DataSet from "@antv/data-set";
+} from "bizcharts";
+import { getAnalysisImpl } from '../../service/BookAnalysisService';
+import { getAnalysis } from '../../action/BookAnalysisAction';
 
 class App extends Component {
 
-  handleIncrement = () => {
-    this.props.dispatch({
-      type: "increment"
-    });
-  };
-
-  handleDecrement = () => {
-    this.props.dispatch({
-      type: "decrement"
-    });
-  };
+  componentWillMount() {
+    getAnalysisImpl();
+  }
 
   render() {
-
-    // 数据源
-    const data = [
-      {
-        month: "Jan",
-        Tokyo: 7.0,
-        London: 3.9
-      },
-      {
-        month: "Feb",
-        Tokyo: 6.9,
-        London: 4.2
-      },
-      {
-        month: "Mar",
-        Tokyo: 9.5,
-        London: 5.7
-      },
-      {
-        month: "Apr",
-        Tokyo: 14.5,
-        London: 8.5
-      },
-      {
-        month: "May",
-        Tokyo: 18.4,
-        London: 11.9
-      },
-      {
-        month: "Jun",
-        Tokyo: 21.5,
-        London: 15.2
-      },
-      {
-        month: "Jul",
-        Tokyo: 25.2,
-        London: 17.0
-      },
-      {
-        month: "Aug",
-        Tokyo: 26.5,
-        London: 16.6
-      },
-      {
-        month: "Sep",
-        Tokyo: 23.3,
-        London: 14.2
-      },
-      {
-        month: "Oct",
-        Tokyo: 18.3,
-        London: 10.3
-      },
-      {
-        month: "Nov",
-        Tokyo: 13.9,
-        London: 6.6
-      },
-      {
-        month: "Dec",
-        Tokyo: 9.6,
-        London: 4.8
-      }
-    ];
-
-    const ds = new DataSet();
-    const dv = ds.createView().source(data);
-    dv.transform({
-      type: "fold",
-      fields: ["Tokyo", "London"],
-      // 展开字段集
-      key: "city",
-      // key字段
-      value: "temperature" // value字段
-    });
-    console.log(dv);
+    const analysis = this.props.analysis;
+    const data = analysis;
     const cols = {
-      month: {
+      "书籍总数": {
+        min: 0
+      },
+      analysisTimestamp: {
         range: [0, 1]
       }
     };
-
-
     return (
       <div className="container">
-        <h1 className="text-center mt-5">{this.props.text}{this.props.count}</h1>
-        <p className="text-center">
-          <button onClick={this.handleIncrement} className="btn btn-primary mr-2">Increase</button>
-          <button onClick={this.handleDecrement} className="btn btn-danger my-2">Decrease</button>
-        </p>
         <div>
-          <Chart height={400} data={dv} scale={cols} forceFit>
-            <Legend />
-            <Axis name="month" />
-            <Axis
-              name="temperature"
-              label={{
-                formatter: val => `${val}°C`
-              }}
-            />
+          <Chart height={500} data={data} scale={cols} forceFit>
+            <span className='main-title'>
+              书籍总数
+            </span>
+            <Axis title="time" name="时间" />
+            <Axis name="书籍总数" />
             <Tooltip
               crosshairs={{
                 type: "y"
               }}
             />
-            <Geom
-              type="line"
-              position="month*temperature"
-              size={2}
-              color={"city"}
-              shape={"smooth"}
-            />
+            <Geom type="line" position="analysisTimestamp*bookTotalElements" size={2} />
             <Geom
               type="point"
-              position="month*temperature"
+              position="analysisTimestamp*bookTotalElements"
               size={4}
               shape={"circle"}
-              color={"city"}
               style={{
                 stroke: "#fff",
                 lineWidth: 1
@@ -163,9 +60,16 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  count: state.count,
-  text: state.hello
+  analysis: state.bookAnalysis
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAnalysis: (analysis) => {
+      dispatch(getAnalysis(analysis))
+    }
+  };
+};
+
 // connect is a Currying function
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
