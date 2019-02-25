@@ -1,5 +1,5 @@
 import axios from 'axios';
-import store from "../../Store";
+import store from "../../store";
 import { getAnalysis } from "../action/BookAnalysisAction";
 
 export function request(config) {
