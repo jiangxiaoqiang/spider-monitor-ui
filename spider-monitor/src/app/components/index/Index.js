@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
-import { connect } from 'react-redux';
 import {
   Chart,
   Geom,
@@ -8,7 +6,6 @@ import {
   Tooltip,
 } from "bizcharts";
 import { getAnalysisImpl } from '../../service/BookAnalysisService';
-import { getAnalysis } from '../../action/BookAnalysisAction';
 
 class Index extends Component {
 

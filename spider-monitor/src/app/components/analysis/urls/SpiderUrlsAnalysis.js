@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import './App.css';
-import { connect } from 'react-redux';
 import {
   Chart,
   Geom,
   Axis,
   Tooltip,
 } from "bizcharts";
-import { getAnalysisImpl } from '../../service/BookAnalysisService';
-import { getAnalysis } from '../../action/BookAnalysisAction';
+import { getUrlsAnalysisImpl } from '../../../service/UrlsAnalysisService';
+import { connect } from 'react-redux';
+import {getUrlsAnalysis} from '../../../action/SpiderUrlsAnalysisAction';
+
 
 class SpiderUrlsAnalysis extends Component {
 
   componentWillMount() {
-    getAnalysisImpl();
+    getUrlsAnalysisImpl();
   }
 
   render() {
-    const analysis = this.props.analysis;
-    const data = analysis;
+    const urlsAnalysis = this.props.urlsAnalysis;
+    const data = urlsAnalysis;
+    console.log("urlsAnalysis:" + JSON.stringify(urlsAnalysis))
     const cols = {
       "书籍总数": {
         min: 0
@@ -59,5 +60,18 @@ class SpiderUrlsAnalysis extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  urlsAnalysis: state.urlsAnalysis
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUrlsAnalysis:(urlsAnalysis) => {
+      dispatch(getUrlsAnalysis(urlsAnalysis))
+    }
+  };
+};
+
 // connect is a Currying function
-export default SpiderUrlsAnalysis;
+export default connect(mapStateToProps, mapDispatchToProps)(SpiderUrlsAnalysis);
+
