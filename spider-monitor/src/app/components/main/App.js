@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAnalysis } from '../../action/BookAnalysisAction';
 import {getUrlsAnalysis} from '../../action/SpiderUrlsAnalysisAction';
-import Index from '../index/Index';
+import Index from '../analysis/book/BookAnalysis';
 import { Route,Switch,BrowserRouter } from 'react-router-dom';
 import SpiderUrlsAnalysis from '../../components/analysis/urls/SpiderUrlsAnalysis';
 
