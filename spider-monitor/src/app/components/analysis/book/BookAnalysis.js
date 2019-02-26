@@ -6,6 +6,8 @@ import {
   Tooltip,
 } from "bizcharts";
 import { getAnalysisImpl } from '../../../service/BookAnalysisService';
+import { connect } from 'react-redux';
+import {getAnalysis} from '../../../action/BookAnalysisAction';
 
 class BookAnalysis extends Component {
 
@@ -56,4 +58,17 @@ class BookAnalysis extends Component {
   }
 }
 
-export default BookAnalysis;
+const mapStateToProps = state => ({
+  analysis: state.analysis
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAnalysis:(analysis) => {
+      dispatch(getAnalysis(analysis))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookAnalysis);
+
