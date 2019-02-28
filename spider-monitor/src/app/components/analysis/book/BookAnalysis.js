@@ -5,9 +5,11 @@ import {
   Axis,
   Tooltip,
 } from "bizcharts";
-import { getAnalysisImpl } from '../../service/BookAnalysisService';
+import { getAnalysisImpl } from '../../../service/BookAnalysisService';
+import { connect } from 'react-redux';
+import {getAnalysis} from '../../../action/BookAnalysisAction';
 
-class Index extends Component {
+class BookAnalysis extends Component {
 
   componentWillMount() {
     getAnalysisImpl();
@@ -57,5 +59,17 @@ class Index extends Component {
   }
 }
 
-// connect is a Currying function
-export default Index;
+const mapStateToProps = state => ({
+  analysis: state.analysis
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAnalysis:(analysis) => {
+      dispatch(getAnalysis(analysis))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookAnalysis);
+

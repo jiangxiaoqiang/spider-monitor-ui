@@ -1,23 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route,Switch,BrowserRouter } from 'react-router-dom';
-import {getUrlsAnalysis} from '../action/SpiderUrlsAnalysisAction';
 import SpiderUrlsAnalysis from '../components/analysis/urls/SpiderUrlsAnalysis';
-
+<<<<<<< HEAD
+import UrlsAnalysisService from '../service/UrlsAnalysisService';
+import App from "../components/main/App";
+import Index from '../components/index/Index';
+import { connect } from "echarts";
+import { bindActionCreators } from "redux";
+=======
 import BookAnalysis from "../components/analysis/book/BookAnalysis";
 
-
-
-
-
+>>>>>>> f723d0389f6ac91165025274014f09f43b48e05d
 
 const routes = (
     <BrowserRouter>        
         <Switch>
-          <Route path="/analysis/urls" render={(props) => <SpiderUrlsAnalysis {...props} />}/>
-
+<<<<<<< HEAD
+          <App >
+            <Route path="/analysis/urls" exact Component={SpiderUrlsAnalysis}/>
+          </App>
+=======
           <Route path="/analysis/url" exact render={(props) => <SpiderUrlsAnalysis {...props} />}/>
           <Route path="/analysis/book" exact render={(props) => <BookAnalysis {...props} />}/>
-
+>>>>>>> f723d0389f6ac91165025274014f09f43b48e05d
         </Switch>
       </BrowserRouter>
 );
