@@ -4,12 +4,11 @@ import './index.css';
 import App from './app/components/main/App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import store from './Store';
+import store from './store';
 import routes from './app/routes/routes';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
     {routes}}
   </Provider>
   ,

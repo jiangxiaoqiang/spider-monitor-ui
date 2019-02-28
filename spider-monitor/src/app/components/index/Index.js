@@ -16,6 +16,7 @@ class Index extends Component {
   render() {
     const analysis = this.props.analysis;
     const data = analysis;
+    console.log("analysis:" + JSON.stringify(analysis))
     const cols = {
       "书籍总数": {
         min: 0

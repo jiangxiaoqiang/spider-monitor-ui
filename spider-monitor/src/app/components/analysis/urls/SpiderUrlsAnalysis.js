@@ -21,7 +21,7 @@ class SpiderUrlsAnalysis extends Component {
     const data = urlsAnalysis;
     console.log("urlsAnalysis:" + JSON.stringify(urlsAnalysis))
     const cols = {
-      "书籍总数": {
+      "unfinishedCount": {
         min: 0
       },
       analysisTimestamp: {
@@ -33,7 +33,7 @@ class SpiderUrlsAnalysis extends Component {
         <div>
           <Chart height={500} data={data} scale={cols} forceFit>
             <span className='main-title'>
-              书籍总数
+              抓取地址统计
             </span>
             <Axis title="time" name="时间" />
             <Axis name="书籍总数" />
@@ -42,10 +42,10 @@ class SpiderUrlsAnalysis extends Component {
                 type: "y"
               }}
             />
-            <Geom type="line" position="analysisTimestamp*bookTotalElements" size={2} />
+            <Geom type="line" position="analysisTimestamp*unfinishedCount" size={2} />
             <Geom
               type="point"
-              position="analysisTimestamp*bookTotalElements"
+              position="analysisTimestamp*unfinishedCount"
               size={4}
               shape={"circle"}
               style={{
