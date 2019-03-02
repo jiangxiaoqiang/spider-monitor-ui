@@ -28,17 +28,17 @@ class SpiderUrlsAnalysis extends Component {
         var gbs = {};
         var dbs = {};
         initGroupBy[value].forEach(function (groupedValue) {
-          if (groupedValue.spiderName = "google-book-spider") {
+          if (groupedValue.spiderName == "google-book-spider") {
             gbs = groupedValue.unfinishedCount;
           }
-          if (groupedValue.spiderName = "douban-book-spider") {
+          if (groupedValue.spiderName == "douban-book-spider") {
             dbs = groupedValue.unfinishedCount;
           }
         });
         var obj = {
           analysisTimestamp: value,
-          googleBookSpider: gbs,
-          doubanBookSpider: dbs
+          googleBookSpiderUrl: gbs,
+          doubanBookSpiderUrl: dbs
         };
         datasource.push(obj);
       });
@@ -46,7 +46,7 @@ class SpiderUrlsAnalysis extends Component {
     const dv = ds.createView().source(datasource);
     dv.transform({
       type: "fold",
-      fields: ["googleBookSpider", "doubanBookSpider"],
+      fields: ["googleBookSpiderUrl", "doubanBookSpiderUrl"],
       // 展开字段集
       key: "city",
       // key字段
@@ -61,12 +61,15 @@ class SpiderUrlsAnalysis extends Component {
     return (
       <div>
         <Chart height={400} data={dv} scale={cols} forceFit>
+        <span className='main-title'>
+              URL动态
+            </span>
           <Legend />
           <Axis name="month" />
           <Axis
             name="temperature"
             label={{
-              formatter: val => `${val}°C`
+              formatter: val => `${val}`
             }}
           />
           <Tooltip
