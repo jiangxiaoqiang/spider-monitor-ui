@@ -28,10 +28,10 @@ class SpiderUrlsAnalysis extends Component {
         var gbs = {};
         var dbs = {};
         initGroupBy[value].forEach(function (groupedValue) {
-          if (groupedValue.spiderName == "google-book-spider") {
+          if (groupedValue.spiderName === "google-book-spider") {
             gbs = groupedValue.unfinishedCount;
           }
-          if (groupedValue.spiderName == "douban-book-spider") {
+          if (groupedValue.spiderName === "douban-book-spider") {
             dbs = groupedValue.unfinishedCount;
           }
         });
