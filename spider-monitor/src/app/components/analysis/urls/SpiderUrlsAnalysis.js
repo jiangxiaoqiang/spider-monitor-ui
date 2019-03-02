@@ -8,7 +8,7 @@ import {
 } from "bizcharts";
 import { getUrlsAnalysisImpl } from '../../../service/UrlsAnalysisService';
 import { connect } from 'react-redux';
-import {getUrlsAnalysis} from '../../../action/SpiderUrlsAnalysisAction';
+import { getUrlsAnalysis } from '../../../action/SpiderUrlsAnalysisAction';
 import DataSet from "@antv/data-set";
 import _ from 'lodash';
 
@@ -19,38 +19,34 @@ class SpiderUrlsAnalysis extends Component {
   }
 
   render() {
-    const urlsAnalysis = this.props.urlsAnalysis;
-    //const data = urlsAnalysis;
-    console.log("urlsAnalysis:" + JSON.stringify(urlsAnalysis))
-
-    var result = _.chain(urlsAnalysis)
-    .groupBy("spiderName")
-    .map(function(currentItem){
-      return {
-        name: "1",
-        value: "2"
-      }
-    })
-    .value;
-
-
-    const data = [
-      {
-        analysisTimestamp: "Jan",
-        Tokyo: 7.0,
-        London: 3.9
-      },
-      {
-        analysisTimestamp: "Feb",
-        Tokyo: 6.9,
-        London: 4.2
-      }
-    ];
+    const urlsAnalysis = this.props.urlsAnalysis;   
+    var datasource = [];
+    var initGroupBy = _(urlsAnalysis).groupBy('analysisTimestamp')
+      .value();
+    Object.keys(initGroupBy)
+      .forEach(function (value) {
+        var gbs = {};
+        var dbs = {};
+        initGroupBy[value].forEach(function (groupedValue) {
+          if (groupedValue.spiderName = "google-book-spider") {
+            gbs = groupedValue.unfinishedCount;
+          }
+          if (groupedValue.spiderName = "douban-book-spider") {
+            dbs = groupedValue.unfinishedCount;
+          }
+        });
+        var obj = {
+          analysisTimestamp: value,
+          googleBookSpider: gbs,
+          doubanBookSpider: dbs
+        };
+        datasource.push(obj);
+      });
     const ds = new DataSet();
-    const dv = ds.createView().source(data);
+    const dv = ds.createView().source(datasource);
     dv.transform({
       type: "fold",
-      fields: ["Tokyo", "London"],
+      fields: ["googleBookSpider", "doubanBookSpider"],
       // 展开字段集
       key: "city",
       // key字段
@@ -99,7 +95,7 @@ class SpiderUrlsAnalysis extends Component {
       </div>
     );
   }
-  }
+}
 
 const mapStateToProps = state => ({
   urlsAnalysis: state.urlsAnalysis
@@ -107,7 +103,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUrlsAnalysis:(urlsAnalysis) => {
+    getUrlsAnalysis: (urlsAnalysis) => {
       dispatch(getUrlsAnalysis(urlsAnalysis))
     }
   };
