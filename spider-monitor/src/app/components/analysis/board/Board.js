@@ -95,27 +95,9 @@ export default class Board extends Component {
                   <PieChart data={upperPieroseData} />
                 </div>
               </div>
-              <div className="trading-volumn-detail-bottom">
-                <div className="detail-bottom-line-chart">
-                  <SubTitle text="书籍增速趋势图" />
-                  <LineChart data={upperLineTopData} height={lineChartHeight} last={3000000000} lastThree={9000000000} double11={15000000000} />
-                </div>               
-              </div>
             </div>
           </div>
           <div className="upper-right">
-            <div className="top5-list">
-              <div className="top5-list-title">
-                <span>各行业成交金额</span>
-              </div>
-              <BarChart data={upperBarTopData} height={barChartHeight} hasComparison />
-            </div>
-            <div className="top5-list">
-              <div className="top5-list-title">
-                <span>各行业成交订单数</span>
-              </div>
-              <BarChart data={upperBarBottomData} height={barChartHeight} type="yellow" hasComparison />
-            </div>
           </div>
         </div>
       </div>

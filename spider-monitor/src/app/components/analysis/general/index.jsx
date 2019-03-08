@@ -36,6 +36,7 @@ class General extends Component {
               { title: '当日已爬取URL数', num: formatterNumber(topElements === undefined?0:topElements.todayScrapyUrlsCount) },
               { title: '当前活跃节点数', num: formatterNumber(3) },
               { title: '待爬取URL数', num: formatterNumber(topElements === undefined?0:topElements.readyUrlsCount) },
+              { title: '待爬取URL数（实时）', num: formatterNumber(topElements === undefined?0:topElements.readyUrlsCount) },
             ].map((item, index) => (
               <div className="table-detial" key={index}>
                 <p className="desc-name">{item.title}</p>
