@@ -97,10 +97,8 @@ export default class Board extends Component {
               </div>
             </div>
           </div>
-
-<<<<<<< .mine          </div>
-=======>>>>>>> .theirs        </div>
-      </div>
+         </div>
+       </div>
     );
   }
 }
