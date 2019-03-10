@@ -96,9 +96,14 @@ export default class Board extends Component {
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
           </div>
-         </div>
-       </div>
+          <div className="upper-right">
+=======
+>>>>>>> fb177720704ec04d33aac5e208e8660933657571
+          </div>
+        </div>
+      </div>
     );
   }
 }
