@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import count from './reducer/CountReducer';
 import analysis from './reducer/BookAnalysisReducer';
 import urlsAnalysis from './reducer/UrlsAnalysisReducer';
+import readyToScrapyCount from './reducer/ReadyToScrapyCountReducer';
 
 const rootReducer = combineReducers({
-    count,
     analysis,
-    urlsAnalysis
+    urlsAnalysis,
+    readyToScrapyCount
 })
 
 export default rootReducer;

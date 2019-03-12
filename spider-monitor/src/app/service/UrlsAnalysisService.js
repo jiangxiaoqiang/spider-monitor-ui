@@ -14,10 +14,3 @@ export function getUrlsAnalysisImpl() {
     return requestWithAction(config, getUrlsAnalysis);
 }
 
-export function getReadyToScrapyCountImpl(){
-    const config = {
-        method: 'get',
-        url: globalConfig.apiServerUrl + '',
-    };
-    return requestWithAction(config,getReadyToScrapyCount);
-}

@@ -4,10 +4,3 @@ export function getUrlsAnalysis(urlsAnalysis) {
       urlsAnalysis: urlsAnalysis
   };
 }
-
-export function getReadyToScrapyCount(count){
-  return {
-    type : "GET_READY_TO_SCRAPY_CONT",
-    count : count
-  };
-}
