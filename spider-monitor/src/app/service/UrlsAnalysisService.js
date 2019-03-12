@@ -3,7 +3,7 @@
  */
 
 import { requestWithAction } from '../common/XHRClient';
-import { getUrlsAnalysis } from "../action/SpiderUrlsAnalysisAction";
+import { getUrlsAnalysis,getReadyToScrapyCount } from "../action/SpiderUrlsAnalysisAction";
 import globalConfig from "../global.config.json";
 
 export function getUrlsAnalysisImpl() {
@@ -12,4 +12,12 @@ export function getUrlsAnalysisImpl() {
         url: globalConfig.apiServerUrl + '/dolphin/spider-monitor/api/v1/urlsAnalysis/list',
     };
     return requestWithAction(config, getUrlsAnalysis);
+}
+
+export function getReadyToScrapyCountImpl(){
+    const config = {
+        method: 'get',
+        url: globalConfig.apiServerUrl + '',
+    };
+    return requestWithAction(config,getReadyToScrapyCount);
 }
