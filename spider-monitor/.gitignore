@@ -25,4 +25,7 @@ yarn-error.log*
 
 *.tar.gz
 
+# the ci server does not have enough memory to compile code
+# so build on local machine
+# and commit to source code management
 !build.tar.gz
