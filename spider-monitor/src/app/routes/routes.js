@@ -4,10 +4,6 @@ import SpiderUrlsAnalysis from '../components/analysis/urls/SpiderUrlsAnalysis';
 import BookAnalysis from '../components/analysis/book/BookAnalysis';
 import DashboardAnalysis from '../components/analysis/dashboard/DashboardAnalysis';
 
-
-
-
-
 const routes = (
     <BrowserRouter>        
         <Switch>
