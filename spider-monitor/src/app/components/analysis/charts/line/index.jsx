@@ -11,7 +11,7 @@ export default class LineChart extends Component {
     super(props);
 
     this.state = {
-      height: 0,
+      height: 250,
     };
   }
 
@@ -69,7 +69,7 @@ export default class LineChart extends Component {
               },
               formatter: (text) => {
                 const val = parseInt(text, 10);
-                return type === 'order' ? formatterNumber(val) : `${(val / 10000).toFixed(0)}万元`;
+                return type === 'order' ? formatterNumber(val) : `${(val).toFixed(0)}本`;
               },
             }}
           />
