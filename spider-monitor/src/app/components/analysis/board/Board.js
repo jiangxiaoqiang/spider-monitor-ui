@@ -113,10 +113,7 @@ class Board extends Component {
             <div className="trading-volumn-detail">
               <div className="trading-volumn-detail-top">
                 <General />
-                <div className="trading-volumn-proportion">
-                  <SubTitle text="书籍信息来源占比（各国家书籍占比）" />
-                  <PieChart data={upperPieroseData} />
-                </div>
+                {/* k */}
               </div>
             </div>
             <div className="trading-volumn-detail-bottom">
