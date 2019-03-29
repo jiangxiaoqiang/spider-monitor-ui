@@ -113,7 +113,6 @@ class Board extends Component {
             <div className="trading-volumn-detail">
               <div className="trading-volumn-detail-top">
                 <General />
-                {/* k */}
               </div>
             </div>
             <div className="trading-volumn-detail-bottom">

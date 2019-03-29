@@ -34,7 +34,7 @@ export default class LineChart extends Component {
       },
       value: {
         min: 0,
-        alias: type === 'order' ? '成交订单' : '成交金额',
+        alias: type === 'order' ? '书籍总量' : '书籍总量',
       },
     };
 
@@ -69,7 +69,7 @@ export default class LineChart extends Component {
               },
               formatter: (text) => {
                 const val = parseInt(text, 10);
-                return type === 'order' ? formatterNumber(val) : `${(val).toFixed(0)}本`;
+                return type === 'order' ? formatterNumber(val) : `${(val).toFixed(0) /10000 }万本`;
               },
             }}
           />
